@@ -55,20 +55,21 @@ func (a h) Less(i, j int) bool { return a[i] < a[j] }
 func (a h) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a *h) Push(v any)        { *a = append(*a, v.(int)) }
 func (a *h) Pop() any {
-	old := *a
-	n := len(old)
-	x := old[n-1]
-	*a = old[:n-1]
+	n := len(*a)
+	x := (*a)[n-1]
+	*a = (*a)[:n-1]
 	return x
 }
 
 func main() {
 	a := make(h, 0)
-	heap.Push(&a, 1)
-	heap.Push(&a, 9)
+	heap.Push(&a, 5)
+	heap.Push(&a, 4)
 	heap.Push(&a, 3)
-	heap.Push(&a, 7)
+	heap.Push(&a, 2)
+	heap.Push(&a, 1)
+	fmt.Println(a)
+	heap.Pop(&a)
 	fmt.Println(a)
 
-	// nodeHeap()
 }
