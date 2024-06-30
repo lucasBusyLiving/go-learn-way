@@ -71,5 +71,4 @@ func main() {
 	fmt.Println(a)
 	heap.Pop(&a)
 	fmt.Println(a)
-
 }

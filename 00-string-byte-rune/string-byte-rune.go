@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	// type rune = int32
-	// rune底层是 int32，也就是 utf-8
+	// rune底层是 int32，也就是 unicode
 	// '1' 单引号定义的类型为 rune
 	s := "123"
 	// s[0] 类型为 byte，这里 == 比较，go编译器自己做了类型转换
