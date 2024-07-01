@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"sync"
 	"time"
@@ -11,6 +12,8 @@ var done = false
 func read(name string, c *sync.Cond) {
 	c.L.Lock()
 	for !done {
+		fmt.Println("Reading wait", name)
+		// wait会释放锁，并进行等待
 		c.Wait()
 	}
 	log.Println(name, "starts reading")
