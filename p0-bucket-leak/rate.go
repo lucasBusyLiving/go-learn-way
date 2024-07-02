@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 
 	"go.uber.org/ratelimit"
@@ -24,4 +25,29 @@ func main() {
 		fmt.Println(i, now.Sub(prev))
 		prev = now
 	}
+
+	rw := sync.RWMutex{}
+	lock := sync.Mutex{}
+	fmt.Println(rw, lock)
+}
+
+type myHeap []int
+
+func (h myHeap) Len() int { return len(h) }
+
+func (h myHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h myHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *myHeap) Push(x interface{}) {
+	*h = append(*h, x.(int))
+}
+
+func (h *myHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
 }

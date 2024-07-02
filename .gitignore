@@ -1,3 +1,5 @@
 .idea/
 test_file1
 test_file2
+server.crt
+server.key
