@@ -15,4 +15,10 @@ func main() {
 	// fmt.Println(s[0] == a) // 自己显式定义的类型 go 不会做转换
 
 	fmt.Println(s[0] == byte(a))
+
+	b := '1' - '0' // b int32
+	c := '1'
+	d := '0'
+	b = c - d
+	println(b)
 }
