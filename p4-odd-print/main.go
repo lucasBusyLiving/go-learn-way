@@ -14,7 +14,7 @@ func main() {
 	fmt.Println(strconv.Itoa(a))
 	ch := make(chan int)
 	endCh := make(chan struct{})
-	f := func(endNum int, gNum int) {
+	f := func(endNum int, gNum string) {
 		for {
 			select {
 			case num, ok := <-ch:
@@ -33,11 +33,13 @@ func main() {
 		}
 	}
 	endNum := 100
-	startNum := 0
-	go f(endNum, 1)
-	go f(endNum, 2)
-
+	startNum := 1
+	go f(endNum, "A")
+	// 让 A 先打印
 	ch <- startNum
+
+	go f(endNum, "B")
+
 	<-endCh
 	close(ch)
 	close(endCh)
